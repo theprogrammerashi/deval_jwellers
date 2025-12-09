@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+.coverage
+.env.test.local
+.env.test
+.env.production.local
+.env.development.local
+.env.local
+.env.development
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Misc
+.DS_Store
+*.pem
+
+# Uploads (Local storage is not persistent on Render)
+/server/uploads/*
+!/server/uploads/.gitkeep
