@@ -16,7 +16,16 @@ export default function AdminLogin() {
             localStorage.setItem('token', res.data.token);
             router.push('/admin/dashboard');
         } catch (error) {
-            alert('Invalid Credentials');
+            console.error('Login Error:', error);
+            if (error.response) {
+                // Server responded with a status code (e.g., 401, 500)
+                alert(error.response.data.message || 'Login failed');
+            } else if (error.request) {
+                // The request was made but no response was received (Network Error)
+                alert('Network Error: Could not connect to backend. Please check your internet connection or API URL configuration.');
+            } else {
+                alert('Error: ' + error.message);
+            }
         }
     };
 
