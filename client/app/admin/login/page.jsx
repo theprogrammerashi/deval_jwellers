@@ -18,11 +18,12 @@ export default function AdminLogin() {
         } catch (error) {
             console.error('Login Error:', error);
             if (error.response) {
-                // Server responded with a status code (e.g., 401, 500)
-                alert(error.response.data.message || 'Login failed');
+                // Server responded with a status code
+                const status = error.response.status;
+                const data = JSON.stringify(error.response.data).slice(0, 100); // Preview data
+                alert(`Login Failed (Status: ${status}): ${data}`);
             } else if (error.request) {
-                // The request was made but no response was received (Network Error)
-                alert('Network Error: Could not connect to backend. Please check your internet connection or API URL configuration.');
+                alert('Network Error: No response received. Check API URL.');
             } else {
                 alert('Error: ' + error.message);
             }
