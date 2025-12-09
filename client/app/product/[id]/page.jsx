@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
+import API_URL from '../../config/api';
 
 export default function ProductDetails() {
     const { id } = useParams();
@@ -11,7 +12,7 @@ export default function ProductDetails() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/products/${id}`);
+                const res = await axios.get(`${API_URL}/api/products/${id}`);
                 setProduct(res.data);
                 setLoading(false);
             } catch (error) {
@@ -31,7 +32,7 @@ export default function ProductDetails() {
                 {/* Image Section */}
                 <div className="relative group overflow-hidden border border-white/5 rounded-sm">
                     <img
-                        src={product.image.startsWith('http') ? product.image : `http://localhost:5000${product.image}`}
+                        src={product.image.startsWith('http') ? product.image : `${API_URL}${product.image}`}
                         alt={product.name}
                         className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-125 cursor-zoom-in"
                     />

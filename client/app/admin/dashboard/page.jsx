@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../../../config/api';
 
 export default function Dashboard() {
     const [stats, setStats] = useState({ products: 0, categories: 0 });
@@ -9,8 +10,8 @@ export default function Dashboard() {
         const fetchStats = async () => {
             try {
                 const [prodRes, catRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/products'),
-                    axios.get('http://localhost:5000/api/categories')
+                    axios.get(`${API_URL}/api/products`),
+                    axios.get(`${API_URL}/api/categories`)
                 ]);
                 setStats({
                     products: prodRes.data.length,

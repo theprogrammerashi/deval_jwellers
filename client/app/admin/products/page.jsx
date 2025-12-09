@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
+import API_URL from '../../../config/api';
 
 export default function AdminProducts() {
     const [products, setProducts] = useState([]);
@@ -21,12 +22,12 @@ export default function AdminProducts() {
     }, []);
 
     const fetchProducts = async () => {
-        const res = await axios.get('http://localhost:5000/api/products');
+        const res = await axios.get(`${API_URL}/api/products`);
         setProducts(res.data);
     };
 
     const fetchCategories = async () => {
-        const res = await axios.get('http://localhost:5000/api/categories');
+        const res = await axios.get(`${API_URL}/api/categories`);
         setCategories(res.data);
     };
 
@@ -46,7 +47,7 @@ export default function AdminProducts() {
         });
 
         try {
-            await axios.post('http://localhost:5000/api/products', data, {
+            await axios.post(`${API_URL}/api/products`, data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             fetchProducts();
@@ -59,7 +60,7 @@ export default function AdminProducts() {
     const handleDelete = async (id) => {
         if (!confirm('Are you sure?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/products/${id}`);
+            await axios.delete(`${API_URL}/api/products/${id}`);
             fetchProducts();
         } catch (error) {
             alert('Error deleting product');
@@ -131,7 +132,7 @@ export default function AdminProducts() {
                         {products.map(p => (
                             <tr key={p._id} className="hover:bg-white/5">
                                 <td className="p-4">
-                                    <img src={`http://localhost:5000${p.image}`} alt={p.name} className="w-12 h-12 object-cover rounded" />
+                                    <img src={`${API_URL}${p.image}`} alt={p.name} className="w-12 h-12 object-cover rounded" />
                                 </td>
                                 <td className="p-4 text-white">{p.name}</td>
                                 <td className="p-4 text-gray-400">{p.category?.name}</td>

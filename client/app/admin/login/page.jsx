@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import API_URL from '../../../config/api';
 
 export default function AdminLogin() {
     const [username, setUsername] = useState('');
@@ -11,7 +12,7 @@ export default function AdminLogin() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+            const res = await axios.post(`${API_URL}/api/auth/login`, { username, password });
             localStorage.setItem('token', res.data.token);
             router.push('/admin/dashboard');
         } catch (error) {

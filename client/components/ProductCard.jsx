@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import API_URL from '../config/api';
 
 const ProductCard = ({ product }) => {
     return (
@@ -11,7 +12,7 @@ const ProductCard = ({ product }) => {
             <div className="relative aspect-square overflow-hidden">
                 {/* Fallback image if product.image is missing or relative path */}
                 <img
-                    src={product.image.startsWith('http') ? product.image : `http://localhost:5000${product.image}`}
+                    src={product.image.startsWith('http') ? product.image : `${API_URL}${product.image}`}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />

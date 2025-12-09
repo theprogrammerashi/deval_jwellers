@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../../../config/api';
 
 export default function AdminCategories() {
     const [categories, setCategories] = useState([]);
@@ -11,7 +12,7 @@ export default function AdminCategories() {
     }, []);
 
     const fetchCategories = async () => {
-        const res = await axios.get('http://localhost:5000/api/categories');
+        const res = await axios.get(`${API_URL}/api/categories`);
         setCategories(res.data);
     };
 
@@ -19,7 +20,7 @@ export default function AdminCategories() {
         e.preventDefault();
         if (!newCategory) return;
         try {
-            await axios.post('http://localhost:5000/api/categories', { name: newCategory });
+            await axios.post(`${API_URL}/api/categories`, { name: newCategory });
             setNewCategory('');
             fetchCategories();
         } catch (error) {
