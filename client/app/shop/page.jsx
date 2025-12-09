@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../../config/api';
 import ProductCard from '../../components/ProductCard';
 
 export default function Shop() {
@@ -13,8 +14,8 @@ export default function Shop() {
         const fetchData = async () => {
             try {
                 const [prodRes, catRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/products'),
-                    axios.get('http://localhost:5000/api/categories')
+                    axios.get(`${API_URL}/api/products`),
+                    axios.get(`${API_URL}/api/categories`)
                 ]);
                 setProducts(prodRes.data);
                 setCategories(catRes.data);

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
-import API_URL from '../../config/api';
+import API_URL from '../../../config/api';
 
 export default function ProductDetails() {
     const { id } = useParams();
